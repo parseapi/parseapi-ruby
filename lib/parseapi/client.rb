@@ -79,6 +79,10 @@ module ParseAPI
 			get("/city/#{seg(name)}", country: country, state: state)
 		end
 
+		def city_id(id)
+			get("/city/id/#{seg(id)}")
+		end
+
 		def city_search(q, country: nil, state: nil, limit: nil)
 			get('/city', q: q, country: country, state: state, limit: limit)
 		end
@@ -125,6 +129,10 @@ module ParseAPI
 
 		def currency_rate(base, quote)
 			get("/currency/#{seg(base)}/#{seg(quote)}")
+		end
+
+		def language(code)
+			get("/language/#{seg(code)}")
 		end
 
 		def timezone(id, at: nil)

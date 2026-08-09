@@ -45,7 +45,8 @@ expect('country_states', ->(r) { r['states'].length >= 50 ? nil : 'too few' }) {
 expect('state', ->(r) { r['name'] == 'North Carolina' ? nil : 'wrong' }) { parse.state('NC', country: 'US') }
 expect('state_districts', ->(r) { r['districts'].any? ? nil : 'empty' }) { parse.state_districts('NC', country: 'US') }
 expect('district', ->(r) { r['name'].include?('Guilford') ? nil : 'wrong district' }) { parse.district('37081') }
-expect('city', ->(r) { r['name'] == 'Charlotte' ? nil : 'wrong city' }) { parse.city('charlotte', country: 'US') }
+expect('city', ->(r) { r['name'] == 'Charlotte' && r['id'].to_s.start_with?('city_') ? nil : 'wrong city' }) { parse.city('charlotte', country: 'US') }
+expect('city_id', ->(r) { r['name'] == 'Charlotte' ? nil : 'wrong city' }) { parse.city_id(parse.city('charlotte', country: 'US')['id']) }
 expect('city_search', ->(r) { r['cities'].any? ? nil : 'empty' }) { parse.city_search('char', country: 'US', limit: 5) }
 expect('city_nearest', ->(r) { r.key?('distance') ? nil : 'no distance' }) { parse.city_nearest(35.2271, -80.8431) }
 expect('postal', ->(r) { r['city'] == 'Charlotte' ? nil : 'wrong city' }) { parse.postal('28202', country: 'US') }
@@ -58,6 +59,7 @@ expect('mx', ->(r) { r['mx'].any? ? nil : 'no mx' }) { parse.mx('gmail.com') }
 expect('useragent', ->(r) { r['browser'] == 'Chrome' ? nil : "browser #{r['browser']}" }) { parse.useragent(UA) }
 expect('currency', ->(r) { r['symbol'] == '$' ? nil : 'wrong symbol' }) { parse.currency('USD') }
 expect('currency_rate', ->(r) { r['rate'].positive? && r['rate'] < 10 ? nil : 'bad rate' }) { parse.currency_rate('USD', 'EUR') }
+expect('language', ->(r) { r['language'] == 'en' && r['name'] == 'English' ? nil : 'wrong language' }) { parse.language('en') }
 expect('timezone', ->(r) { [-240, -300].include?(r['offset_minutes']) ? nil : "offset #{r['offset_minutes']}" }) { parse.timezone('America/New_York') }
 expect('holiday', ->(r) { r['holidays'].length > 5 ? nil : 'too few' }) { parse.holiday('US') }
 expect('holiday_date', ->(r) { r.dig('holiday', 'name') == 'Christmas Day' ? nil : 'not christmas' }) { parse.holiday_date('US', '2026-12-25') }
