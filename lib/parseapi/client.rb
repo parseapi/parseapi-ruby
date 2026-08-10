@@ -155,8 +155,8 @@ module ParseAPI
 			get('/point', lat: lat, lon: lon, deep: deep)
 		end
 
-		def weather(lat, lon, unit: nil, deep: false)
-			get('/weather', lat: lat, lon: lon, unit: unit, deep: deep)
+		def weather(lat, lon, deep: false)
+			get('/weather', lat: lat, lon: lon, deep: deep)
 		end
 
 		def emoji(query)
