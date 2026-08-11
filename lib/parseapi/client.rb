@@ -159,8 +159,8 @@ module ParseAPI
 			get('/weather', lat: lat, lon: lon, deep: deep)
 		end
 
-		def emoji(query)
-			get("/emoji/#{seg(query)}")
+		def emoji(emoji)
+			get("/emoji/#{seg(emoji)}")
 		end
 
 		def emoji_search(q, limit: nil)
