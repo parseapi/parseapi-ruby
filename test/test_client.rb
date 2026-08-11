@@ -30,7 +30,7 @@ class TestUrlMapping < Minitest::Test
 
 	TABLE = {
 		'ip' => [->(p) { p.ip('8.8.8.8') }, 'https://api.parseapi.com/ip/8.8.8.8'],
-		'ip_me' => [->(p) { p.ip_me }, 'https://api.parseapi.com/ip/me'],
+		'ip_self' => [->(p) { p.ip_self }, 'https://api.parseapi.com/ip'],
 		'ip deep' => [->(p) { p.ip('8.8.8.8', deep: true) }, 'https://api.parseapi.com/ip/8.8.8.8?deep=true'],
 		'continent' => [->(p) { p.continent('NA') }, 'https://api.parseapi.com/continent/NA'],
 		'continent_countries' => [->(p) { p.continent_countries('NA') }, 'https://api.parseapi.com/continent/NA/countries'],

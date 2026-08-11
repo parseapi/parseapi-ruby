@@ -43,8 +43,8 @@ module ParseAPI
 			get("/ip/#{seg(ip)}", deep: deep)
 		end
 
-		def ip_me(deep: false)
-			get('/ip/me', deep: deep)
+		def ip_self(deep: false)
+			get('/ip', deep: deep)
 		end
 
 		def continent(code)
