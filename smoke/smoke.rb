@@ -53,7 +53,7 @@ expect('postal', ->(r) { r['city'] == 'Charlotte' ? nil : 'wrong city' }) { pars
 expect('postal_nearby', ->(r) { r['nearby'].any? ? nil : 'empty' }) { parse.postal_nearby('28202', country: 'US', radius: 40) }
 expect('postal_distance', ->(r) { r['distance'].between?(800, 1000) ? nil : "distance #{r['distance']}" }) { parse.postal_distance('28202', '10001', country: 'US') }
 expect('email', ->(r) { r['valid'] == true ? nil : 'not valid' }) { parse.email('hello@gmail.com') }
-expect('phone', ->(r) { r['e164'] == '+14155552671' ? nil : 'wrong e164' }) { parse.phone('+14155552671') }
+expect('phone', ->(r) { r['phone'] == '+14155552671' ? nil : 'wrong phone' }) { parse.phone('+14155552671') }
 expect('domain', ->(r) { r['available'] == false ? nil : 'gmail available?' }) { parse.domain('gmail.com') }
 expect('mx', ->(r) { r['mx'].any? ? nil : 'no mx' }) { parse.mx('gmail.com') }
 expect('useragent', ->(r) { r['browser'] == 'Chrome' ? nil : "browser #{r['browser']}" }) { parse.useragent(UA) }
